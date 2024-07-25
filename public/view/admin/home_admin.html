@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="/public/css/output.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script>
+        // Simulated data for orders
+        let pendingOrders = [
+            { id: '#54321', customer: 'Charlie Brown', amount: '$299.99', status: 'In Progress', date: '2024-08-01' },
+            { id: '#54322', customer: 'Lucy Van Pelt', amount: '$399.99', status: 'In Progress', date: '2024-08-02' },
+            { id: '#54323', customer: 'Snoopy', amount: '$499.99', status: 'In Progress', date: '2024-08-03' },
+        ];
+
+        let completedOrders = [];
+
+        function updateOrderStatus(orderId) {
+            let order = pendingOrders.find(o => o.id === orderId);
+            if (order) {
+                order.status = 'Completed';
+                completedOrders.push(order);
+                pendingOrders = pendingOrders.filter(o => o.id !== orderId);
+                renderOrders();
+            }
+        }
+
+        function renderOrders() {
+            const pendingOrdersTable = document.getElementById('pending-orders-table-body');
+            const orderDetailsTable = document.getElementById('order-details-table-body');
+            pendingOrdersTable.innerHTML = '';
+            orderDetailsTable.innerHTML = '';
+
+            pendingOrders.forEach(order => {
+                pendingOrdersTable.innerHTML += `
+                    <tr>
+                        <td class="border px-4 py-2">${order.id}</td>
+                        <td class="border px-4 py-2">${order.customer}</td>
+                        <td class="border px-4 py-2">${order.amount}</td>
+                        <td class="border px-4 py-2 text-yellow-500">${order.status}</td>
+                        <td class="border px-4 py-2">${order.date}</td>
+                        <td class="border px-4 py-2">
+                            <button onclick="updateOrderStatus('${order.id}')" class="bg-green-500 text-white px-4 py-2 rounded">Complete</button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            completedOrders.forEach(order => {
+                orderDetailsTable.innerHTML += `
+                    <tr>
+                        <td class="border px-4 py-2">${order.id}</td>
+                        <td class="border px-4 py-2">${order.customer}</td>
+                        <td class="border px-4 py-2">${order.amount}</td>
+                        <td class="border px-4 py-2 text-green-500">${order.status}</td>
+                        <td class="border px-4 py-2">${order.date}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        window.onload = () => {
+            renderOrders();
+        };
+    </script>
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+    <div class="flex flex-col md:flex-row">
+        <!-- Sidebar -->
+        <aside class="bg-gradient-to-r from-purple-500 to-blue-500 w-full md:w-64 h-screen md:flex flex-col items-center hidden">
+            <div class="text-white text-2xl font-bold my-4">Admin Dashboard</div>
+            <nav class="flex flex-col mt-10">
+                <a href="home_admin.html" class="py-2.5 px-4 text-white hover:bg-purple-700 transition duration-200 rounded">
+                    <i class="fas fa-tachometer-alt mr-3"></i>
+                    Dashboard
+                </a>
+                <a href="order_details.html" class="py-2.5 px-4 text-white hover:bg-purple-700 transition duration-200 rounded">
+                    <i class="fas fa-box-open mr-3"></i>
+                    Order Details
+                </a>
+                <a href="#" class="py-2.5 px-4 text-white hover:bg-purple-700 transition duration-200 rounded">
+                    <i class="fas fa-store mr-3"></i>
+                    Marketplace Preview
+                </a>
+                <a href="manage_users.html" class="py-2.5 px-4 text-white hover:bg-purple-700 transition duration-200 rounded">
+                    <i class="fas fa-users mr-3"></i>
+                    Manage Users
+                </a>
+                <a href="pending_transactions.html" class="py-2.5 px-4 text-white hover:bg-purple-700 transition duration-200 rounded">
+                    <i class="fas fa-exchange-alt mr-3"></i>
+                    Pending Orders
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-6 bg-gray-100">
+            <!-- Navbar -->
+            <header class="bg-white shadow-md py-4">
+                <div class="container mx-auto px-6 md:px-12 flex justify-between items-center">
+                    <div class="text-2xl font-bold text-gray-800">Dashboard</div>
+                    <div class="flex items-center space-x-4">
+                        <button class="text-gray-600 hover:text-gray-900">Profile</button>
+                        <button class="text-gray-600 hover:text-gray-900">Logout</button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Section -->
+            <section class="mt-8">
+                <h1 class="text-3xl font-semibold mb-6 text-gray-800">Welcome, Admin!</h1>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Card 1 -->
+                    <div class="bg-gradient-to-r from-blue-500 to-purple-500 p-6 rounded-lg shadow-lg text-white">
+                        <h2 class="text-xl font-semibold mb-4">Total Orders</h2>
+                        <p class="text-3xl">1,234</p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="bg-gradient-to-r from-green-500 to-teal-500 p-6 rounded-lg shadow-lg text-white">
+                        <h2 class="text-xl font-semibold mb-4">Total Users</h2>
+                        <p class="text-3xl">567</p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="bg-gradient-to-r from-pink-500 to-red-500 p-6 rounded-lg shadow-lg text-white">
+                        <h2 class="text-xl font-semibold mb-4">Pending Transactions</h2>
+                        <p class="text-3xl">89</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Order Details -->
+            <section class="mt-8">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-800">Order Details</h2>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <table class="w-full table-auto">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="px-4 py-2">Order ID</th>
+                                <th class="px-4 py-2">Customer</th>
+                                <th class="px-4 py-2">Product</th>
+                                <th class="px-4 py-2">Status</th>
+                                <th class="px-4 py-2">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="order-details-table-body">
+                            <!-- Orders will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Marketplace Preview -->
+            <section class="mt-8">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-800">Marketplace Preview</h2>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Featured Products</h3>
+                        <a href="#" class="text-blue-500 hover:underline">View All</a>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-gray-100 p-4 rounded-lg shadow-lg">
+                            <img src="/public/image/product1.jpg" alt="Product 1" class="w-full h-48 object-cover rounded">
+                            <h4 class="text-lg font-semibold mt-4">Product 1</h4>
+                            <p class="text-gray-600 mt-2">$49.99</p>
+                        </div>
+                        <div class="bg-gray-100 p-4 rounded-lg shadow-lg">
+                            <img src="/public/image/product2.jpg" alt="Product 2" class="w-full h-48 object-cover rounded">
+                            <h4 class="text-lg font-semibold mt-4">Product 2</h4>
+                            <p class="text-gray-600 mt-2">$59.99</p>
+                        </div>
+                        <div class="bg-gray-100 p-4 rounded-lg shadow-lg">
+                            <img src="/public/image/product3.jpg" alt="Product 3" class="w-full h-48 object-cover rounded">
+                            <h4 class="text-lg font-semibold mt-4">Product 3</h4>
+                            <p class="text-gray-600 mt-2">$69.99</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Manage Users -->
+            <section class="mt-8">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-800">Manage Users</h2>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <table class="w-full table-auto">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="px-4 py-2">User ID</th>
+                                <th class="px-4 py-2">Name</th>
+                                <th class="px-4 py-2">Email</th>
+                                <th class="px-4 py-2">Role</th>
+                                <th class="px-4 py-2">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="border px-4 py-2">#1</td>
+                                <td class="border px-4 py-2">John Doe</td>
+                                <td class="border px-4 py-2">john.doe@example.com</td>
+                                <td class="border px-4 py-2">Admin</td>
+                                <td class="border px-4 py-2">
+                                    <button class="bg-blue-500 text-white px-4 py-2 rounded">Edit</button>
+                                    <button class="bg-red-500 text-white px-4 py-2 rounded">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="border px-4 py-2">#2</td>
+                                <td class="border px-4 py-2">Anna Smith</td>
+                                <td class="border px-4 py-2">anna.smith@example.com</td>
+                                <td class="border px-4 py-2">User</td>
+                                <td class="border px-4 py-2">
+                                    <button class="bg-blue-500 text-white px-4 py-2 rounded">Edit</button>
+                                    <button class="bg-red-500 text-white px-4 py-2 rounded">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="border px-4 py-2">#3</td>
+                                <td class="border px-4 py-2">Bob Ross</td>
+                                <td class="border px-4 py-2">bob.ross@example.com</td>
+                                <td class="border px-4 py-2">User</td>
+                                <td class="border px-4 py-2">
+                                    <button class="bg-blue-500 text-white px-4 py-2 rounded">Edit</button>
+                                    <button class="bg-red-500 text-white px-4 py-2 rounded">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Pending Orders -->
+            <section class="mt-8">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-800">Pending Orders</h2>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <table class="w-full table-auto">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="px-4 py-2">Transaction ID</th>
+                                <th class="px-4 py-2">Customer</th>
+                                <th class="px-4 py-2">Amount</th>
+                                <th class="px-4 py-2">Status</th>
+                                <th class="px-4 py-2">Date</th>
+                                <th class="px-4 py-2">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pending-orders-table-body">
+                            <!-- Pending orders will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="/public/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('teamPerformanceChart').getContext('2d');
+        const teamPerformanceChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['John', 'Anna', 'Bob', 'Charlie', 'Diana'],
+                datasets: [{
+                    label: 'Tasks Completed',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(231, 74, 59, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(231, 74, 59, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

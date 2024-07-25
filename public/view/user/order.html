@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Page</title>
+  <link href="/public/css/output.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+<body class="bg-gray-100">
+
+<!-- Header -->
+<header class="bg-white shadow-md">
+  <nav class="max-w-7xl mx-auto p-6 flex justify-between items-center">
+    <a href="#" class="text-xl font-bold text-indigo-600">Your Company</a>
+    <div class="hidden md:flex space-x-6">
+      <a href="#" class="text-gray-600 hover:text-indigo-600">Home</a>
+      <a href="#" class="text-gray-600 hover:text-indigo-600">Products</a>
+      <a href="#" class="text-gray-600 hover:text-indigo-600">Contact</a>
+    </div>
+    <div class="md:hidden">
+      <button type="button" class="text-gray-600 hover:text-indigo-600">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- Order Form Section -->
+<section class="max-w-7xl mx-auto py-12 px-6">
+  <h2 class="text-3xl font-extrabold text-gray-900 mb-8">Place Your Order</h2>
+  <form class="bg-white shadow-md rounded-lg p-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Personal Information -->
+      <div>
+        <h3 class="text-2xl font-semibold text-gray-900 mb-4">Personal Information</h3>
+        <div class="mb-4">
+          <label class="block text-gray-700 font-medium mb-2" for="name">Name</label>
+          <input class="w-full border border-gray-300 p-3 rounded-md" type="text" id="name" name="name" placeholder="Your Name">
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 font-medium mb-2" for="email">Email</label>
+          <input class="w-full border border-gray-300 p-3 rounded-md" type="email" id="email" name="email" placeholder="Your Email">
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 font-medium mb-2" for="phone">Phone</label>
+          <input class="w-full border border-gray-300 p-3 rounded-md" type="tel" id="phone" name="phone" placeholder="Your Phone Number">
+        </div>
+      </div>
+
+      <!-- Shipping Information -->
+      <div>
+        <h3 class="text-2xl font-semibold text-gray-900 mb-4">Shipping Information</h3>
+        <div class="mb-4">
+          <label class="block text-gray-700 font-medium mb-2" for="address">Address</label>
+          <input class="w-full border border-gray-300 p-3 rounded-md" type="text" id="address" name="address" placeholder="Your Address">
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 font-medium mb-2" for="city">City</label>
+          <input class="w-full border border-gray-300 p-3 rounded-md" type="text" id="city" name="city" placeholder="Your City">
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 font-medium mb-2" for="zip">Zip Code</label>
+          <input class="w-full border border-gray-300 p-3 rounded-md" type="text" id="zip" name="zip" placeholder="Your Zip Code">
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 font-medium mb-2" for="country">Country</label>
+          <input class="w-full border border-gray-300 p-3 rounded-md" type="text" id="country" name="country" placeholder="Your Country">
+        </div>
+      </div>
+    </div>
+
+    <!-- Order Details -->
+    <div class="mt-8">
+      <h3 class="text-2xl font-semibold text-gray-900 mb-4">Order Details</h3>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-2" for="product">Product</label>
+        <select class="w-full border border-gray-300 p-3 rounded-md" id="product" name="product">
+          <option>Select Product</option>
+          <option>Product 1</option>
+          <option>Product 2</option>
+          <option>Product 3</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-2" for="quantity">Quantity</label>
+        <input class="w-full border border-gray-300 p-3 rounded-md" type="number" id="quantity" name="quantity" placeholder="Quantity">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-2" for="notes">Additional Notes</label>
+        <textarea class="w-full border border-gray-300 p-3 rounded-md" id="notes" name="notes" placeholder="Any additional notes"></textarea>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="mt-8">
+      <button class="w-full bg-indigo-600 text-white p-3 rounded-md font-medium hover:bg-indigo-700">Place Order</button>
+    </div>
+  </form>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white py-12">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex flex-col md:flex-row justify-between items-center">
+      <div class="mb-4 md:mb-0">
+        <a href="#" class="text-xl font-bold text-indigo-600">Your Company</a>
+      </div>
+      <div class="md:ml-auto">
+        <p class="text-sm">&copy; 2024 Your Company. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
